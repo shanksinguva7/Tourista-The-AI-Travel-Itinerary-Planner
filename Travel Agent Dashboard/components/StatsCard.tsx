@@ -6,7 +6,7 @@ const StatsCard = ({
   total,
   lastMonthCount,
   currentMonthCount
-}) => {
+}: StatsCard) => {
   const{trend, percentage} = calculateTrendPercentage(currentMonthCount, lastMonthCount);
 
   const isDecrement = trend == 'decrement';

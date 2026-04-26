@@ -1,17 +1,20 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLoaderData, useNavigate } from "react-router";
 import { sidebarItems } from "~/constants";
 import { cn } from "~/lib/utils";
-const NavItems = ({ handleClick }: { handleClick: () => void }) => {
-    const user = {
-        name: 'Shashank',
-        email: 'shashank.inguvawork@gmail.com',
-        pfp: "/assets/images/david.webp"
-    }
+import { logoutUser } from "~/appwrite/auth";
+
+const NavItems = ({ handleClick }: { handleClick?: () => void }) => {
+    const user = useLoaderData() as any;
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        await logoutUser();
+        navigate("/sign-in");
+    };
+
     return (
         <section className="nav-items">
-            <Link to='/' className="link-logo">
-                {/*The whole point of Link Tag is to bring you back to the homepage once you click on either the logo or the Toruisto name
-             kind of similar to when you click on the Youtube logo you get back to your homepage. This is for faster reloads */}
+            <Link to="/" className="link-logo">
                 <img src="/assets/icons/logo.svg" alt="logo" className="size-[30px]" />
                 <h1>Tourista</h1>
             </Link>
@@ -19,15 +22,21 @@ const NavItems = ({ handleClick }: { handleClick: () => void }) => {
             <div className="container">
                 <nav>
                     {sidebarItems.map(({ id, href, icon, label }) => (
-                        <NavLink to={href} key={id}>
+                        <NavLink to={href} key={id} onClick={handleClick}>
                             {({ isActive }: { isActive: boolean }) => (
-                                <div className={cn('group nav-item', { 'bg-primary-100 !text-white': isActive })}>
+                                <div
+                                    className={cn("group nav-item", {
+                                        "bg-primary-100 !text-white": isActive,
+                                    })}
+                                >
                                     <img
                                         src={icon}
                                         alt={label}
-                                        className={`group-hover:brightness-0 size-0 group-hover:invert 
-                                    ${isActive ? 'brightness-0 invert' : 'text-dark-200'}`} />
-
+                                        className={cn(
+                                            "group-hover:brightness-0 size-5 group-hover:invert",
+                                            { "brightness-0 invert": isActive }
+                                        )}
+                                    />
                                     {label}
                                 </div>
                             )}
@@ -36,24 +45,22 @@ const NavItems = ({ handleClick }: { handleClick: () => void }) => {
                 </nav>
 
                 <footer className="nav-footer">
-                    <img src={'/assets/images/pfp.jpg'} />
+                    <img
+                        src={user?.imageUrl || "/assets/images/david.webp"}
+                        alt="user"
+                        referrerPolicy="no-referrer"
+                    />
                     <article>
-                        <h2> {user?.name}</h2>
-                        <p>{user?.email}</p>
+                        <h2>{user?.name || "Guest"}</h2>
+                        <p>{user?.email || ""}</p>
                     </article>
-                    <button
-                        onClick={() => {
-                            console.log('Logout')
-                        }}
-                        className="cursor-pointer"
-                    >
-                        <img src='/assets/icons/logout.svg' />
+                    <button onClick={handleLogout} className="cursor-pointer">
+                        <img src="/assets/icons/logout.svg" alt="logout" />
                     </button>
-
                 </footer>
-
             </div>
         </section>
-    )
-}
-export default NavItems
+    );
+};
+
+export default NavItems;
