@@ -18,40 +18,41 @@ Tourista is a full-stack travel management platform where admins can generate AI
 
 ## Screenshots
 
-> Save your screenshots into a `screenshots/` folder at the project root, using the filenames below.
+**Homepage**
 
-**Homepage** — 
-
-![alt text](<Screenshot 2026-04-26 165710.png>)
+![Homepage](<Screenshot 2026-04-26 165710.png>)
 
 The public-facing landing page with a full-screen hero image, a "Get Started" CTA, a featured destinations grid, and a paginated list of AI-generated trips available for booking.
 
 ---
 
-**Admin Dashboard** — 
+**Admin Dashboard**
 
-![alt text](<Screenshot 2026-04-26 165726.png>)
+![Admin Dashboard](<Screenshot 2026-04-26 165726.png>)
+
 The admin overview showing real-time stats (Total Users, Total Trips, Active Users) with monthly trend indicators, a User Growth column/spline chart, a Trip Trends chart by travel style, and tables for latest signups and trips by interest.
 
 ---
 
-**Create Trip Form** — 
+**Create Trip Form**
 
-![alt text](<Screenshot 2026-04-26 165845.png>)
+![Create Trip Form](<Screenshot 2026-04-26 165845.png>)
+
 The AI trip generation form where admins select a country (with flag emoji), set a duration, pick multiple interests via checkbox dropdown, and choose group type, travel style, and budget.
 
 ---
 
-**World Map & Trip Generation** — 
-![alt text](<Screenshot 2026-04-26 170947.png>)
+**World Map & Trip Generation**
+
+![World Map](<Screenshot 2026-04-26 170947.png>)
 
 The lower half of the create trip form, showing the interactive world map that highlights the selected country in red. The Generate Trip button submits the form to the Gemini AI backend.
 
 ---
 
-**Sign-In Page** — 
+**Sign-In Page**
 
-![alt text](<Screenshot 2026-04-26 165653.png>)
+![Sign-In Page](<Screenshot 2026-04-26 165653.png>)
 
 The Google OAuth sign-in screen with an illustrated travel-themed background, used for both admin and regular user authentication.
 
